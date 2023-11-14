@@ -2,6 +2,9 @@ import React from 'react';
 import { Button } from '../Button/Button';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeCategory } from '../../store/categorySlice/categorySlice';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '../../firebase';
+import { useNavigate } from 'react-router-dom';
 
 export const Header = () => {
   const categories = [
@@ -21,13 +24,17 @@ export const Header = () => {
     'Сопутствующие товары',
   ];
 
+  const [user, loading, error] = useAuthState(auth);
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <div className="grid grid-cols-4 xsm:grid-cols-2 sm:grid-cols-4 mt-4 gap-2">
       {categories.map((category, i) => (
         <Button key={i} category={category} onClick={() => dispatch(changeCategory(category))} />
       ))}
+      {user && <Button category={'Добавить продукт'} onClick={() => navigate('/dashboard')} />}
     </div>
   );
 };

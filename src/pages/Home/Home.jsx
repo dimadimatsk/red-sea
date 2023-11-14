@@ -8,7 +8,7 @@ import { fetchItems } from '../../store/itemsSlice/itemsSlice';
 export const Home = () => {
   const dispatch = useDispatch();
 
-  const { items } = useSelector((state) => state.items);
+  const { items, loading } = useSelector((state) => state.items);
   const { category } = useSelector((state) => state.category);
   const productsCollection = collection(db, 'products');
 
@@ -18,33 +18,36 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 my-4 pb-20">
-      {category !== 'Вся продукция'
-        ? items
-            .slice()
-            .sort((a, b) => {
-              if (a.productCategory > b.productCategory) {
-                return 1;
-              }
-              if (a.productCategory < b.productCategory) {
-                return -1;
-              }
-              return 0;
-            })
-            .filter((item) => item.productCategory === category)
-            .map((item) => <Card key={item.id} {...item} />)
-        : items
-            .slice()
-            .sort((a, b) => {
-              if (a.productCategory > b.productCategory) {
-                return 1;
-              }
-              if (a.productCategory < b.productCategory) {
-                return -1;
-              }
-              return 0;
-            })
-            .map((item) => <Card key={item.id} {...item} />)}
-    </div>
+    <>
+      {loading !== 'succeeded' && <div className="load"></div>}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 my-4 pb-20">
+        {category !== 'Вся продукция'
+          ? items
+              .slice()
+              .sort((a, b) => {
+                if (a.productCategory > b.productCategory) {
+                  return 1;
+                }
+                if (a.productCategory < b.productCategory) {
+                  return -1;
+                }
+                return 0;
+              })
+              .filter((item) => item.productCategory === category)
+              .map((item) => <Card key={item.id} {...item} />)
+          : items
+              .slice()
+              .sort((a, b) => {
+                if (a.productCategory > b.productCategory) {
+                  return 1;
+                }
+                if (a.productCategory < b.productCategory) {
+                  return -1;
+                }
+                return 0;
+              })
+              .map((item) => <Card key={item.id} {...item} />)}
+      </div>
+    </>
   );
 };

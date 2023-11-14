@@ -21,7 +21,7 @@ export const LoginPage = () => {
   return (
     <form className="flex flex-col justify-center items-center bg-white rounded shadow-lg p-12 my-auto sm:mx-auto">
       <label className="font-semibold text-xs" htmlFor="usernameField">
-        Email
+        Почта
       </label>
       <input
         className="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2"
@@ -30,7 +30,7 @@ export const LoginPage = () => {
         onChange={(e) => setEmail(e.target.value)}
       />
       <label className="font-semibold text-xs mt-3" htmlFor="passwordField">
-        Password
+        Пароль
       </label>
       <input
         className="flex items-center h-12 px-4 w-64 bg-gray-200 mt-2 rounded focus:outline-none focus:ring-2"
@@ -42,7 +42,7 @@ export const LoginPage = () => {
         onClick={onBtnClick}
         className="flex items-center justify-center h-12 px-6 w-64 bg-orange-500 mt-8 rounded font-semibold text-sm text-orange-100 hover:bg-orange-700"
       >
-        Login
+        Войти
       </button>
     </form>
   );
