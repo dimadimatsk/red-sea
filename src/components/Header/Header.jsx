@@ -22,6 +22,7 @@ export const Header = () => {
     'Рыба речная свежемороженая',
     'Консервы',
     'Сопутствующие товары',
+    'Омега-3',
   ];
 
   const [user, loading, error] = useAuthState(auth);
