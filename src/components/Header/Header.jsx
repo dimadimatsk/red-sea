@@ -23,6 +23,7 @@ export const Header = () => {
     'Консервы',
     'Сопутствующие товары',
     'Омега-3',
+    'Икра',
   ];
 
   const [user, loading, error] = useAuthState(auth);
